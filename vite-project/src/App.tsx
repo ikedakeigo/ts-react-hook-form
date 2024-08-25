@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { sum } from "./test";
 
 function App() {
   const [email, setEmail] = useState<string>('');
@@ -23,6 +24,10 @@ function App() {
   //     React.ChangeEvent<HTMLInputElement>) => {
   //       setPassword(e.target.value);
   //     };
+  // type F = (repeatNum: number) => string;
+  // const xRepeat: F = (num: number): string => "x".repeat(num);
+
+  // xRepeat(
 
 
     return (
