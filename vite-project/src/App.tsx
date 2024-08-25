@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import { sum } from "./test";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+  // const handleSubmit = (e:
+  //   React.FormEvent<HTMLFormElement>) => {
+  //     e.preventDefault();
+  //     console.log({
+  //       email,
+  //       password,
+  //     })
+  //   };
+
+
+  //   const handleChangeEmail = (e:
+  //     React.ChangeEvent<HTMLInputElement>) => {
+  //       setEmail(e.target.value);
+  //     };
+  //   const handleChangePassword = (e:
+  //     React.ChangeEvent<HTMLInputElement>) => {
+  //       setPassword(e.target.value);
+  //     };
+  // type F = (repeatNum: number) => string;
+  // const xRepeat: F = (num: number): string => "x".repeat(num);
+
+  // xRepeat(
+
+
+    return (
+      <div className="App">
+        <h1>ログイン</h1>
+        <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+          e.preventDefault();
+          console.log({
+            email,
+            password,
+          })
+        }}>
+          <div className="">
+            <label htmlFor="email">Emali</label>
+            <input
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setEmail(e.target.value);
+            }}
+            />
+          </div>
+          <div className="">
+            <label htmlFor="password">パスワード</label>
+            <input
+            id="password"
+            name="password"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            />
+          </div>
+          <div className="">
+            <button type="submit">
+              ログイン
+            </button>
+          </div>
+        </form>
+      </div>
+    )
+};
+
+export default App;
