@@ -1,75 +1,43 @@
-import React, { useState } from "react";
-import { sum } from "./test";
+import "./App.css";
+import {useForm} from 'react-hook-form'
+
+type FormData = {
+  email: string;
+  password: string;
+}
 
 function App() {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const { register, handleSubmit } = useForm<FormData>();
 
+  const onSubmit = handleSubmit((data) => console.log(data));
 
-  // const handleSubmit = (e:
-  //   React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     console.log({
-  //       email,
-  //       password,
-  //     })
-  //   };
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const target = e.target as any;
+  //   console.log({
+  //     email: target.email.value,
+  //     password: target.password.value,
+  //   });
+  // };
 
-
-  //   const handleChangeEmail = (e:
-  //     React.ChangeEvent<HTMLInputElement>) => {
-  //       setEmail(e.target.value);
-  //     };
-  //   const handleChangePassword = (e:
-  //     React.ChangeEvent<HTMLInputElement>) => {
-  //       setPassword(e.target.value);
-  //     };
-  // type F = (repeatNum: number) => string;
-  // const xRepeat: F = (num: number): string => "x".repeat(num);
-
-  // xRepeat(
-
-
-    return (
-      <div className="App">
-        <h1>ログイン</h1>
-        <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          console.log({
-            email,
-            password,
-          })
-        }}>
-          <div className="">
-            <label htmlFor="email">Emali</label>
-            <input
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setEmail(e.target.value);
-            }}
-            />
-          </div>
-          <div className="">
-            <label htmlFor="password">パスワード</label>
-            <input
-            id="password"
-            name="password"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            />
-          </div>
-          <div className="">
-            <button type="submit">
-              ログイン
-            </button>
-          </div>
-        </form>
-      </div>
-    )
-};
+  return (
+    <div className="App">
+      <h1>ログイン</h1>
+      <form onSubmit={onSubmit}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input id="email" {...register('email')}/>
+        </div>
+        <div>
+          <label htmlFor="password">パスワード</label>
+          <input id="password" {...register('password')} type="password"/>
+        </div>
+        <div>
+          <button type="submit">ログイン</button>
+        </div>
+      </form>
+    </div>
+  );
+}
 
 export default App;
